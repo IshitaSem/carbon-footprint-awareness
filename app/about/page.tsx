@@ -11,14 +11,14 @@ import {
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Learn how CarbonWise estimates personal carbon footprints and why its calculator keeps data private in the browser.",
+    "Learn how SustainaX estimates personal carbon footprints and why its calculator keeps data private in the browser.",
 };
 
 const principles = [
   {
     title: "Privacy First",
     description:
-      "Your calculator inputs stay in session storage on your device. CarbonWise has no backend, database, or account system.",
+      "Your calculator inputs stay in session storage on your device. SustainaX has no backend, database, or account system.",
     icon: Shield,
     color: "bg-earth-100 text-earth-700",
   },
@@ -60,10 +60,10 @@ export default function AboutPage() {
   return (
     <section className="section-container py-14 sm:py-20">
       <div className="max-w-3xl">
-        <h1 className="page-title">About CarbonWise</h1>
+        <h1 className="page-title">About SustainaX</h1>
         <div className="page-subtitle space-y-5">
           <p>
-            CarbonWise exists to make personal climate impact easier to understand. It translates everyday activities into annual carbon estimates that are concrete enough to act on.
+            SustainaX exists to make personal climate impact easier to understand. It translates everyday activities into annual carbon estimates that are concrete enough to act on.
           </p>
           <p>
             The calculator uses science-backed emission factors and keeps the assumptions visible. It is designed for awareness, comparison, and habit change rather than formal carbon accounting.

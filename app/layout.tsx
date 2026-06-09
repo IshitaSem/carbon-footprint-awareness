@@ -6,11 +6,11 @@ import { Navbar } from "@/components/layout/Navbar";
 
 export const metadata: Metadata = {
   title: {
-    default: "CarbonWise | Carbon Footprint Awareness Platform",
-    template: "%s | CarbonWise",
+    default: "SustainaX | Carbon Footprint Awareness Platform",
+    template: "%s | SustainaX",
   },
   description:
-    "CarbonWise helps you calculate, visualize, and reduce your annual carbon footprint using IPCC and IEA-informed emission factors.",
+    "SustainaX helps you calculate, visualize, and reduce your annual carbon footprint using IPCC and IEA-informed emission factors.",
   keywords: [
     "carbon footprint",
     "climate calculator",
@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     "personal climate action",
   ],
   openGraph: {
-    title: "CarbonWise | Carbon Footprint Awareness Platform",
+    title: "SustainaX | Carbon Footprint Awareness Platform",
     description:
       "Measure your personal carbon footprint and discover practical actions to reduce it.",
     type: "website",
-    siteName: "CarbonWise",
+    siteName: "SustainaX",
   },
 };
 

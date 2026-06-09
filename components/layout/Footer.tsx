@@ -25,7 +25,7 @@ export function Footer() {
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-earth-500 text-white">
                 <Leaf className="h-5 w-5" aria-hidden />
               </span>
-              <span className="font-display text-2xl font-bold">CarbonWise</span>
+              <span className="font-display text-2xl font-bold">SustainaX</span>
             </div>
             <p className="mt-4 max-w-md leading-7 text-moss-100">
               A browser-first platform for understanding personal carbon emissions and finding practical reduction opportunities.
@@ -73,7 +73,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-moss-200 sm:flex-row sm:items-center sm:justify-between">
-          <p>Copyright 2026 CarbonWise. All rights reserved.</p>
+          <p>Copyright 2026 SustainaX. All rights reserved.</p>
           <p>Built with Next.js 14 - Data from IPCC</p>
         </div>
       </div>

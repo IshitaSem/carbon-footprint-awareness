@@ -71,7 +71,7 @@ export default function HomePage() {
               <span className="block text-earth-400">Carbon Footprint</span>
             </h1>
             <p className="mt-6 max-w-2xl text-xl leading-8 text-earth-50/85">
-              CarbonWise helps you calculate your annual impact, understand the categories that matter most, and choose practical reductions with confidence.
+              SustainaX helps you calculate your annual impact, understand the categories that matter most, and choose practical reductions with confidence.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <Link
@@ -130,7 +130,7 @@ export default function HomePage() {
         <div className="max-w-2xl">
           <h2 className="page-title">A clearer way to read your impact</h2>
           <p className="page-subtitle">
-            CarbonWise keeps the experience focused on action: simple inputs, transparent math, and recommendations matched to your biggest categories.
+            SustainaX keeps the experience focused on action: simple inputs, transparent math, and recommendations matched to your biggest categories.
           </p>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
