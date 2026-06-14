@@ -18,6 +18,7 @@ import type {
   EmissionBreakdown,
   PieChartData,
   Recommendation,
+  RecommendationCategory,
   RecommendationPriority,
 } from "@/types";
 
@@ -110,32 +111,27 @@ function recPriorityValue(priority: RecommendationPriority): number {
 }
 
 /**
- * Deduplicate recommendations so that when multiple recs target the same
- * category, only the highest-priority one per category is kept.
- *
- * This prevents a specific threshold-based rec (e.g. "transport-car-high")
- * from co-existing with a broader percentage-based fallback rec for the same
- * category (e.g. "transport-share-high"), which would be redundant and lower
- * the perceived quality of the recommendation engine.
- *
- * Ties within a category are broken by the order they were added — whichever
- * specific rec was pushed first wins (specific recs are always pushed before
- * fallback recs in generateRecommendations).
+ * Removes duplicate recommendations within the same category, keeping only
+ * the highest-priority entry per category. When two recs share the same
+ * category and priority, the one that was added first is kept — this means
+ * specific threshold-based recs (pushed early) win over broader
+ * percentage-based fallback recs (pushed later).
  */
-function deduplicateByCategory(recs: Recommendation[]): Recommendation[] {
-  const seen = new Map<string, Recommendation>();
+export function deduplicateByCategory(
+  recommendations: Recommendation[],
+): Recommendation[] {
+  const seen = new Map<RecommendationCategory, Recommendation>();
 
-  for (const rec of recs) {
+  for (const rec of recommendations) {
     const existing = seen.get(rec.category);
 
     if (!existing) {
-      // First rec seen for this category — keep it
       seen.set(rec.category, rec);
     } else if (recPriorityValue(rec.priority) < recPriorityValue(existing.priority)) {
-      // This rec has a higher priority than the one already stored — replace it
+      // Replace only when the new rec has strictly higher priority
       seen.set(rec.category, rec);
     }
-    // Otherwise: existing rec is equal or higher priority — keep existing, discard this one
+    // Equal or lower priority: keep the first one (specific beats fallback)
   }
 
   return Array.from(seen.values());
@@ -147,8 +143,7 @@ export function generateRecommendations(
 ): Recommendation[] {
   const recommendations: Recommendation[] = [];
 
-  // ── Transport: specific threshold recs (pushed first so they win dedup) ──────
-
+  // ── Transport: specific threshold recs pushed first ───────────────────────
   if (inputs.carKmPerWeek > 200) {
     recommendations.push({
       id: "transport-car-high",
@@ -215,8 +210,7 @@ export function generateRecommendations(
     });
   }
 
-  // ── Transport: percentage-based fallback (pushed after specific recs) ─────────
-
+  // ── Transport: percentage-based fallback (pushed after specific recs) ──────
   if (result.percentages.transport > 50) {
     recommendations.push({
       id: "transport-share-high",
@@ -235,8 +229,7 @@ export function generateRecommendations(
     });
   }
 
-  // ── Electricity: specific threshold recs (pushed first so they win dedup) ─────
-
+  // ── Electricity: specific threshold recs pushed first ─────────────────────
   if (inputs.electricityKwhPerMonth > 400) {
     recommendations.push({
       id: "electricity-high",
@@ -271,8 +264,7 @@ export function generateRecommendations(
     });
   }
 
-  // ── Electricity: percentage-based fallback (pushed after specific recs) ───────
-
+  // ── Electricity: percentage-based fallback (pushed after specific recs) ───
   if (result.percentages.electricity > 30) {
     recommendations.push({
       id: "electricity-renewable-medium",
@@ -290,8 +282,7 @@ export function generateRecommendations(
     });
   }
 
-  // ── Food ──────────────────────────────────────────────────────────────────────
-
+  // ── Food ──────────────────────────────────────────────────────────────────
   if (inputs.dietType === "high_meat") {
     recommendations.push({
       id: "food-high-meat",
@@ -325,8 +316,7 @@ export function generateRecommendations(
     });
   }
 
-  // ── Waste ─────────────────────────────────────────────────────────────────────
-
+  // ── Waste ─────────────────────────────────────────────────────────────────
   if (inputs.recyclingHabit === "never") {
     recommendations.push({
       id: "waste-never",
@@ -360,8 +350,7 @@ export function generateRecommendations(
     });
   }
 
-  // ── Lifestyle ─────────────────────────────────────────────────────────────────
-
+  // ── Lifestyle ─────────────────────────────────────────────────────────────
   recommendations.push({
     id: "lifestyle-low",
     category: "lifestyle",
@@ -378,8 +367,8 @@ export function generateRecommendations(
   });
 
   // Deduplicate: within each category keep only the highest-priority rec.
-  // Specific threshold recs were pushed before fallback recs, so in a tie
-  // the specific rec is already stored in the Map and wins automatically.
+  // Specific threshold recs were pushed before fallback recs, so in a same-
+  // priority tie the specific rec wins because it was inserted first.
   const deduplicated = deduplicateByCategory(recommendations);
 
   return deduplicated.sort(

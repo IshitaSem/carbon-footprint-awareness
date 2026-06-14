@@ -157,7 +157,11 @@ export default function InsightsPage() {
           <Filter className="h-4 w-4" aria-hidden />
           Filter
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div
+          role="group"
+          aria-label="Filter recommendations by category"
+          className="flex flex-wrap gap-2"
+        >
           {filters.map((filter) => {
             const active = activeFilter === filter.value;
             return (

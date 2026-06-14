@@ -69,37 +69,66 @@ function formatTonnesAxis(value: number): string {
 
 function ComparisonBarChartComponent({ data }: ComparisonBarChartProps) {
   return (
-    <div
-      role="img"
-      aria-label="Bar chart comparing your emissions with global average and sustainable optimal levels."
-      className="h-[340px] w-full"
-    >
-      <ResponsiveContainer width="100%" height={340}>
-        <BarChart data={data} margin={{ top: 16, right: 16, bottom: 8, left: 0 }}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-          <XAxis dataKey="category" tickLine={false} axisLine={false} />
-          <YAxis
-            tickFormatter={formatTonnesAxis}
-            tickLine={false}
-            axisLine={false}
-            width={48}
-          />
-          <Tooltip content={<CustomTooltip />} />
-          <Bar dataKey="yours" name="Yours" fill="#16a34a" radius={[8, 8, 0, 0]} />
-          <Bar
-            dataKey="average"
-            name="Average"
-            fill="#64748b"
-            radius={[8, 8, 0, 0]}
-          />
-          <Bar
-            dataKey="optimal"
-            name="Optimal"
-            fill="#86efac"
-            radius={[8, 8, 0, 0]}
-          />
-        </BarChart>
-      </ResponsiveContainer>
+    <div>
+      {/* Visual chart — sighted users */}
+      <div
+        role="img"
+        aria-label="Bar chart comparing your emissions with global average and sustainable optimal levels."
+        className="h-[340px] w-full"
+      >
+        <ResponsiveContainer width="100%" height={340}>
+          <BarChart data={data} margin={{ top: 16, right: 16, bottom: 8, left: 0 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+            <XAxis dataKey="category" tickLine={false} axisLine={false} />
+            <YAxis
+              tickFormatter={formatTonnesAxis}
+              tickLine={false}
+              axisLine={false}
+              width={48}
+            />
+            <Tooltip content={<CustomTooltip />} />
+            <Bar dataKey="yours" name="Yours" fill="#16a34a" radius={[8, 8, 0, 0]} />
+            <Bar
+              dataKey="average"
+              name="Average"
+              fill="#64748b"
+              radius={[8, 8, 0, 0]}
+            />
+            <Bar
+              dataKey="optimal"
+              name="Optimal"
+              fill="#86efac"
+              radius={[8, 8, 0, 0]}
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Accessible data table — screen readers only */}
+      <table className="sr-only">
+        <caption>
+          Emission comparison by category: your footprint vs global average vs
+          sustainable optimal target
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Category</th>
+            <th scope="col">Yours</th>
+            <th scope="col">Global average</th>
+            <th scope="col">Sustainable optimal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row) => (
+            <tr key={row.category}>
+              <th scope="row">{row.category}</th>
+              <td>{formatKg(row.yours)}</td>
+              <td>{formatKg(row.average)}</td>
+              <td>{formatKg(row.optimal)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

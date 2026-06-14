@@ -1,6 +1,6 @@
 import { forwardRef, useId } from "react";
 import type { SelectHTMLAttributes } from "react";
-import { cn } from "@/lib/utils";
+import { cn, slugify } from "@/lib/utils";
 
 export interface SelectOption {
   value: string;
@@ -13,10 +13,6 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   options: SelectOption[];
   error?: string;
   hint?: string;
-}
-
-function slugify(label: string): string {
-  return label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(

@@ -1,16 +1,12 @@
 import { forwardRef, useId } from "react";
 import type { InputHTMLAttributes } from "react";
-import { cn } from "@/lib/utils";
+import { cn, slugify } from "@/lib/utils";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
   hint?: string;
   unit?: string;
-}
-
-function slugify(label: string): string {
-  return label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(

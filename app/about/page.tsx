@@ -89,7 +89,7 @@ export default function AboutPage() {
         })}
       </div>
 
-      <section className="mt-16">
+      <section className="mt-16" aria-label="Emission factors">
         <h2 className="font-display text-3xl font-bold text-carbon-950">
           Emission Factors
         </h2>
@@ -133,7 +133,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mt-16">
+      <section className="mt-16" aria-label="Primary sources">
         <h2 className="font-display text-3xl font-bold text-carbon-950">
           Primary Sources
         </h2>
@@ -156,7 +156,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mt-16 rounded-2xl border border-amber-200 bg-amber-50 p-6">
+      <section className="mt-16 rounded-2xl border border-amber-200 bg-amber-50 p-6" aria-label="Limitations">
         <h2 className="text-2xl font-bold text-amber-950">Limitations</h2>
         <ul className="mt-4 space-y-3 text-amber-900">
           <li>It does not include every purchase, service, building material, or investment-linked emission.</li>

@@ -14,3 +14,15 @@ export function formatNumber(n: number): string {
     maximumFractionDigits: 0,
   }).format(n);
 }
+
+/**
+ * Converts a human-readable label into a URL/ID-safe slug.
+ * Example: "Weekly Car Distance" → "weekly-car-distance"
+ * Used to generate accessible IDs for form inputs and selects.
+ */
+export function slugify(label: string): string {
+  return label
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
