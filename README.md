@@ -1,6 +1,6 @@
-# 🌱 SustainaX — Carbon Footprint Awareness Platform
+# 🌱 Sustainyapri — Carbon Footprint Awareness Platform
 
-SustainaX is a privacy-first, fully browser-based carbon footprint calculator and sustainability insight platform built with Next.js 14, TypeScript, Tailwind CSS, and Recharts.
+Sustainyapri is a privacy-first, fully browser-based carbon footprint calculator and sustainability insight platform built with Next.js 14, TypeScript, Tailwind CSS, and Recharts.
 
 It helps users calculate their annual CO₂ emissions, compare them with global benchmarks, and receive actionable sustainability recommendations — all without any backend or data storage.
 
