@@ -39,7 +39,7 @@ export function Navbar() {
             <Leaf className="h-5 w-5" aria-hidden />
           </span>
           <span className="font-display text-2xl font-bold text-carbon-950">
-            SustainaX
+            Sustainyapri
           </span>
         </Link>
 
