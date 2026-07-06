@@ -11,7 +11,7 @@ export default function NotFound() {
         Page not found
       </h1>
       <p className="mt-4 max-w-md text-lg leading-8 text-carbon-600">
-        The page you are looking for is not available in SustainaX.
+        The page you are looking for is not available in SustainYapri.
       </p>
       <Link
         href="/"
