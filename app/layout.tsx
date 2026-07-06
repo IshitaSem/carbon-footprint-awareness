@@ -28,11 +28,11 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "SustainaX | Carbon Footprint Awareness Platform",
-    template: "%s | SustainaX",
+    default: "SustainYapri | Carbon Footprint Awareness Platform",
+    template: "%s | SustainYapri",
   },
   description:
-    "SustainaX helps you calculate, visualize, and reduce your annual carbon footprint using IPCC and IEA-informed emission factors.",
+    "SustainYapri helps you calculate, visualize, and reduce your annual carbon footprint using IPCC and IEA-informed emission factors.",
   keywords: [
     "carbon footprint",
     "climate calculator",
@@ -43,11 +43,11 @@ export const metadata: Metadata = {
     "personal climate action",
   ],
   openGraph: {
-    title: "SustainaX | Carbon Footprint Awareness Platform",
+    title: "SustainYapri | Carbon Footprint Awareness Platform",
     description:
       "Measure your personal carbon footprint and discover practical actions to reduce it.",
     type: "website",
-    siteName: "SustainaX",
+    siteName: "SustainYapri",
   },
 };
 
